@@ -1,0 +1,178 @@
+/* =========================================
+   Upload.css — clean, white cards + black text
+   ========================================= */
+:root{
+  --bg: #eef2f6;        /* page bg */
+  --card: #ffffff;      /* container bg */
+  --text: #111827;      /* black text */
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-2: #1e40af;
+  --border: #d1d5db;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+html, body{
+  height: 100%;
+}
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow-y: scroll;            /* single smooth scroll */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+/* ---------- Container & Title ---------- */
+.upload-container{
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 12px;
+}
+.upload-title{
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 18px;
+  color: var(--text);
+}
+
+/* ---------- Actions Row ---------- */
+.upload-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* ---------- Buttons ---------- */
+.btn, .btn-blue{
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease, opacity .15s ease;
+}
+.btn{
+  background: #3b66bb;
+  color: black;
+}
+.btn:hover{ background:#4976ba; }
+.btn:active{ transform: translateY(1px); }
+
+.btn-blue{
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.btn-blue:hover{ background: var(--primary-2); }
+.btn-blue:active{ transform: translateY(1px); }
+button:disabled{ opacity:.55; cursor:not-allowed; }
+
+/* ---------- Drop Zone ---------- */
+.drop-zone{
+  background: var(--card);                  /* white card */
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: clamp(22px, 4vw, 36px);
+  text-align: center;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: border-color .2s ease, background .2s ease, transform .06s ease;
+}
+.drop-zone p{ margin: 0 0 6px; }
+.drop-zone b{ font-weight: 800; }
+.drop-zone.drag-over{
+  border-color: var(--primary);
+  background: #f5f7ff;
+  transform: translateY(-1px);
+}
+.file-name{
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* ---------- Status ---------- */
+.loading{
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #eff6ff;
+  color: var(--primary-2);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* ---------- Cards ---------- */
+.card{
+  background: var(--card);                  /* white card */
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
+}
+.error-card{
+  border-color: #fecaca;
+  background: #fff1f2;
+}
+.info-card{
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+.info-text{
+  font-weight: 700;
+  color: #065f46;
+}
+
+/* ---------- Error Table ---------- */
+.error-table{
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+.error-table thead{
+  background: #fee2e2;
+  color: #7f1d1d;
+  font-weight: 800;
+}
+.error-table th, .error-table td{
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.error-table tbody tr:nth-child(odd){
+  background: #fafafa;
+}
+
+/* ---------- Footer ---------- */
+.footer-card b{ color: var(--text); }
+.headers-list{
+  margin: 6px 0 8px;
+  padding: 8px 12px;
+  background: #f3f4f6;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+code{
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+}
+
+/* ---------- Nav Buttons ---------- */
+.nav-buttons .btn, .nav-buttons .btn-blue{
+  min-width: 180px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px){
+  .upload-container{ margin: 20px 12px; }
+  .nav-buttons{ gap:10px; }
+  .nav-buttons .btn, .nav-buttons .btn-blue{ flex:1; }
+}

@@ -1,0 +1,75 @@
+/* Sunset themed student flow */
+:root{
+  --sun-300:#FFC084;
+  --sun-400:#FFA35C;
+  --sun-500:#FF8A3D;
+
+  --ink:#2b1f19;
+  --muted:#6b523f;
+  --card:#fff;
+  --line:#efe2d1;
+  --ring: rgba(255,163,92,.35);
+  --shadow: 0 10px 24px rgba(122,65,28,.10);
+}
+
+.elective-container{
+  width:min(1200px, 100% - 40px);
+  margin: 20px auto 60px;
+}
+
+.title{
+  margin: 14px 0 18px;
+  font-weight: 900;
+  color: #a6451b;
+}
+
+.info-banner{
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+.subtitle{
+  margin: 12px 0;
+  color: #714b31;
+}
+
+.tiny-line{ margin-bottom: 10px; color:#6a4a35; }
+
+.elective-table{
+  width:100%; border-collapse: collapse;
+  background:#fff; border:1px solid var(--line);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.elective-table th, .elective-table td{
+  padding: 10px 12px; border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.elective-table thead th{
+  background: #ffefe1; color:#6b4128; font-weight:800;
+}
+.elective-table tbody tr:hover{ background:#fff7ef; }
+
+.btn-group{ display:flex; gap:10px; justify-content:flex-end; margin-top: 14px; }
+.back-btn{
+  background:#fff; border:1px solid var(--line); color:#6a4a35;
+  padding:10px 14px; border-radius: 12px; cursor:pointer;
+}
+.next-btn{
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  color:#fff; border:0; border-radius:12px; padding:10px 16px; cursor:pointer;
+  box-shadow: 0 10px 22px rgba(255,138,61,.32);
+}
+
+.error-message{
+  margin-top:10px; padding:10px 12px;
+  border:1px solid rgba(192,57,43,.35);
+  background: rgba(192,57,43,.08);
+  color:#c0392b; border-radius:12px; font-weight:700;
+}
+
+.step-section{ margin-top: 16px; }

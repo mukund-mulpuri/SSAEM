@@ -1,0 +1,144 @@
+/* ===== DownloadSlip.css ===== */
+
+.download-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("") no-repeat center center/cover;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+}
+
+/* Slip Card */
+.slip-card {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 1s ease;
+  text-align: left;
+}
+
+/* Slip Title */
+.slip-card h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  color: #ffffff;
+  letter-spacing: 0.8px;
+}
+
+/* Slip Content */
+.slip-card p {
+  margin: 0.8rem 0;
+  font-size: 1.05rem;
+  color: #f3f4f6;
+  letter-spacing: 0.3px;
+}
+
+.slip-card strong {
+  color: #93c5fd;
+}
+
+/* Divider */
+.slip-card hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 1.2rem 0;
+}
+
+/* Signature Section */
+.signature-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+}
+
+.signature-box {
+  width: 45%;
+  text-align: center;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.5);
+  padding-top: 10px;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+/* Button Container */
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Download Button */
+.download-btn {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.5);
+}
+
+/* Fade Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .slip-card {
+    padding: 1.8rem;
+  }
+
+  .slip-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .slip-card p {
+    font-size: 0.95rem;
+  }
+
+  .signature-section {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .signature-box {
+    width: 80%;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+}

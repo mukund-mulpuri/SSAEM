@@ -1,0 +1,322 @@
+/* ===========================
+   Admin Dashboard – Sunset Theme
+   Wider sidebar + clean cards
+   =========================== */
+
+/* ---- Sunset Tokens ---- */
+:root{
+  /* Sunset oranges */
+  --sun-300:#FFC084;
+  --sun-400:#FFA35C;
+  --sun-500:#FF8A3D;
+  --sun-600:#F56F2A;
+
+  /* Neutrals */
+  --bg: #FFF9F4;          /* soft warm page bg */
+  --text: #2b1f19;        /* deep brownish for readability */
+  --muted: #7a5d4c;
+
+  /* Sidebar & accents */
+  --side: #f49e77;        /* rich warm brown */
+  --side-active: #A8491E; /* hover/active on sidebar */
+
+  /* Surfaces */
+  --card: #FFFFFF;
+  --line: #F2E5DA;        /* warm divider */
+  --table-line: #EED9C9;
+
+  /* Status */
+  --ok: var(--sun-500);
+  --warn: #C7361F;
+
+  /* Shadows */
+  --kpi-shadow: 0 2px 8px rgba(122, 65, 28, 0.08);
+  --card-shadow: 0 2px 6px rgba(122, 65, 28, 0.10);
+}
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ---- Shell ---- */
+.admin-shell{
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ---- Sidebar (wider) ---- */
+.sidebar{
+  width: 300px;
+  min-width: 300px;
+  background:
+    linear-gradient(180deg, rgba(255, 208, 170, .22), transparent 40%),
+    var(--side);
+  color: #fff;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, .08);
+}
+
+.sidebar-title{
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 22px;
+  letter-spacing: .4px;
+  color: #FFE9DC;
+}
+
+.nav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .25s ease, transform .08s ease, border-color .25s ease;
+}
+.nav-item:hover,
+.nav-item.active{
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  border-color: transparent;
+}
+.nav-item:active{ transform: translateY(1px); }
+.nav-ico{ font-size: 18px; line-height: 1; }
+
+/* ---- Main Content (roomier) ---- */
+.content{
+  flex: 1;
+  padding: 28px 55px;
+  overflow: auto;
+  background:
+    radial-gradient(900px 140px at 10% 0%, rgba(255, 196, 141, .22), transparent 70%),
+    radial-gradient(900px 160px at 90% 0%, rgba(255, 160, 110, .18), transparent 70%),
+    var(--bg);
+}
+
+/* keep everything centered, allow wide tables */
+.content > *{
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* header */
+.admin-title{
+  margin: 0 0 22px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: #7A3D20;
+}
+
+/* ---- KPI Cards ---- */
+.kpi-grid{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.kpi-card{
+  flex: 1;
+  background: var(--card);
+  padding: 22px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: var(--kpi-shadow);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::after{
+  content:"";
+  position:absolute; inset:auto -40px -40px -40px; height: 120px;
+  background: radial-gradient(480px 120px at 100% 0%, rgba(255, 163, 92, .24), transparent 60%);
+}
+.kpi-value{ font-size: 26px; font-weight: 800; color: var(--sun-600); }
+.kpi-label{ font-size: 14px; color: var(--muted); }
+
+/* ---- Filter / Actions Bar ---- */
+.filter-bar{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.search{
+  width: 280px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.search:focus{
+  border-color: var(--sun-500);
+  box-shadow: 0 0 0 3px rgba(255, 163, 92, .25);
+}
+.sort-showing{ font-size: 14px; color: #5c463b; }
+
+/* ---- Buttons (sunset) ---- */
+.btn{
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+  box-shadow: 0 6px 14px rgba(255, 138, 61, .30);
+}
+.btn:hover{ filter: brightness(0.98); transform: translateY(-1px); box-shadow: 0 10px 20px rgba(255, 138, 61, .36); }
+.btn:active{ transform: translateY(0); }
+.btn.small{ padding: 6px 10px; font-size: 13px; }
+
+/* ---- Cards ---- */
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  padding: 18px;
+}
+.analytics-card h3{
+  margin: 6px 0 16px;
+  font-size: 18px;
+  color: #7A3D20;
+}
+
+/* ---- Table ---- */
+.admin-table{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--table-line);
+}
+.admin-table th,
+.admin-table td{
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.admin-table th{
+  background: linear-gradient(180deg, #FFF0E5, #FFE5D2);
+  color: #7A3D20;
+  font-weight: 800;
+  user-select: none;
+  cursor: pointer;
+}
+.admin-table td.num{ text-align: right; }
+.admin-table td.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:#5b3a2c; }
+.admin-table tr:hover{ background: #FFF7F0; }
+
+.no-data{
+  text-align: center;
+  padding: 26px;
+  color: var(--muted);
+}
+
+/* ---- Utilization Bar ---- */
+.bar{
+  background: #F4E1D3;
+  height: 8px;
+  width: 130px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-right: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.bar-fill{
+  background: linear-gradient(90deg, var(--sun-500), var(--sun-400));
+  height: 100%;
+  border-radius: 999px;
+}
+.bar-full{ background: #C7361F !important; }
+.util{ font-size: 13px; color:#6c4a3a; }
+
+/* ---- Status Pills ---- */
+.pill{
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-left: 8px;
+  color: #fff;
+}
+.pill-hot{ background: var(--warn); }
+.pill-calm{ background: var(--ok); }
+
+/* ---- Spacing for rows in create section ---- */
+.bulk-row, .manual-row{ margin-bottom: 18px; }
+.bulk-row:last-child, .manual-row:last-child{ margin-bottom: 0; }
+
+/* ---- Upload / Forms minor helpers (optional) ---- */
+.input-field{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.input-field:focus{
+  border-color: var(--sun-500);
+  box-shadow: 0 0 0 3px rgba(255, 163, 92, .25);
+}
+
+.btn-blue, .btn-bluesmall{
+  /* mapping “blue” buttons to sunset primary for consistency */
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(255, 138, 61, .30);
+}
+.btn-bluesmall{ padding: 6px 10px; font-size: 13px; }
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px){
+  .kpi-grid{ flex-direction: column; }
+  .content{ padding: 22px 24px; }
+  .content > *{ max-width: 100%; }
+}
+@media (max-width: 900px){
+  .sidebar{
+    width: 78px;
+    min-width: 78px;
+    padding: 18px 10px;
+    background: var(--side);
+  }
+  .sidebar-title{ display: none; }
+  .nav-item{ justify-content: center; }
+  .nav-item span:not(.nav-ico){ display: none; }
+  .content{ padding: 20px; }
+}
+@media (max-width: 520px){
+  .filter-bar{ flex-direction: column; align-items: stretch; gap: 10px; }
+  .search{ width: 100%; }
+}

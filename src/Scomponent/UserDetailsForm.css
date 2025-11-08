@@ -1,0 +1,153 @@
+/* ===============================
+   UserDetailsForm – Sunset Theme
+   Clean, accessible, 2-column on md+
+   =============================== */
+
+/* ---- Brand tokens ---- */
+:root{
+  --sun-300:#FFC084;
+  --sun-400:#FFA35C;
+  --sun-500:#FF8A3D;
+  --sun-600:#F56F2A;
+
+  --ink:#1f2a37;
+  --muted:#6b523f;          /* warm brown for labels */
+  --card :#bb7839;
+  --line:#efe2d1;           /* warm divider */
+  --ring: rgba(255,163,92,.35);
+  --shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+/* NOTE: no global body styles here (to avoid affecting other pages) */
+
+*{ box-sizing:border-box; }
+
+/* --- Container / Card --- */
+.user-details-container{
+  max-width: 760px;
+  margin: 48px auto;
+  padding: clamp(18px, 3vw, 28px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft ribbon (sunset glow) */
+.user-details-container::before{
+  content:"";
+  position:absolute; inset:-120px -40px auto -40px; height:220px;
+  background:
+    radial-gradient(700px 220px at 0% 0%, rgba(208, 201, 196, 0.16), transparent 70%),
+    radial-gradient(600px 180px at 100% 0%, rgba(255,163,92,.14), transparent 70%);
+  pointer-events:none;
+}
+
+/* --- Title --- */
+.form-title{
+  margin:0 0 18px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight:800; letter-spacing:.2px;
+  color:#a6451b;  /* deep sunset */
+  display:flex; align-items:center; gap:10px;
+}
+.form-title::after{
+  content:""; flex:1; height:4px; border-radius:999px;
+  background: linear-gradient(90deg, var(--sun-500), transparent 70%);
+  opacity:.35;
+}
+
+/* --- Form grid --- */
+.user-form{
+  display:grid; grid-template-columns:1fr; gap:16px;
+}
+@media (min-width: 720px){
+  .user-form{ grid-template-columns:1fr 1fr; }
+}
+
+/* Make specific fields full width */
+.user-form .form-group:nth-child(1),   /* Name */
+.user-form .form-group:nth-child(2),   /* RegNo */
+.user-form .form-group:nth-last-child(3), /* Previous Elective */
+.user-form .btn-container{
+  grid-column:1 / -1;
+}
+
+/* --- Field group --- */
+.form-group{ display:flex; flex-direction:column; gap:8px; }
+.form-group label{
+  font-size:.95rem; color:var(--muted); font-weight:700; letter-spacing:.2px;
+}
+.required{ color:#c0392b; }
+
+/* --- Inputs / Selects --- */
+.user-form input,
+.user-form select{
+  appearance:none;
+  width:100%;
+  padding:12px 14px;
+  font-size:1rem;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .03s ease;
+}
+
+/* subtle placeholder */
+.user-form input::placeholder{ color:#b18669; }
+
+/* Hover / Focus */
+.user-form input:hover, .user-form select:hover{
+  border-color: #ffd3b3;
+}
+.user-form input:focus, .user-form select:focus{
+  border-color: var(--sun-400);
+  box-shadow: 0 0 0 4px var(--ring);
+  transform: translateY(-1px);
+}
+
+/* Number input spinner cleanup (Chrome) */
+.user-form input[type="number"]::-webkit-outer-spin-button,
+.user-form input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance:none; margin:0;
+}
+
+/* --- Error message --- */
+.error-message{
+  grid-column:1 / -1;
+  margin-top:4px;
+  padding:10px 12px;
+  border:1px solid rgba(192,57,43,.35);
+  background: rgba(192,57,43,.08);
+  color:#c0392b;
+  border-radius:12px;
+  font-weight:700;
+}
+
+/* --- Submit Button --- */
+.btn-container{
+  display:flex; justify-content:flex-end; margin-top:8px;
+}
+.next-btn{
+  padding:12px 18px; font-size:1rem; font-weight:800;
+  border:0; border-radius:12px; color:#fff;
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  box-shadow: 0 10px 22px rgba(255,138,61,.32);
+  cursor:pointer;
+  transition: transform .05s ease, box-shadow .15s ease, filter .2s ease;
+}
+.next-btn:hover{
+  filter:brightness(1.03);
+  box-shadow:0 12px 28px rgba(255,138,61,.42);
+}
+.next-btn:active{ transform: translateY(1px); }
+.next-btn:disabled{ opacity:.6; cursor:not-allowed; box-shadow:none; }
+
+/* --- Mobile spacing helper --- */
+@media (max-width: 719px){
+  .user-details-container{ margin:28px 14px; }
+}

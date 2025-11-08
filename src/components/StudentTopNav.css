@@ -1,0 +1,35 @@
+/* Sunset top nav */
+:root{
+  --sun-400:#FFA35C;
+  --sun-500:#FF8A3D;
+  --ink:#2b1f19;
+  --line:#f1e6da;
+  --bg:#fff;
+}
+
+.stu-nav{
+  position: sticky; top:0; z-index:20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 10px rgba(122,65,28,.06);
+}
+.stu-nav__inner{
+  height:64px; display:flex; align-items:center; justify-content:space-between;
+  width:min(1200px, 100% - 40px); margin-inline:auto; gap:16px;
+}
+.stu-brand{
+  font-weight:900; color:#a6451b; letter-spacing:.2px;
+}
+.stu-links{ display:flex; gap:14px; }
+.stu-links a{
+  text-decoration:none; color:#563f2f; font-weight:700; padding:8px 10px; border-radius:10px;
+}
+.stu-links a.active, .stu-links a:hover{
+  color:#fff; background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+}
+.stu-me{ display:flex; gap:10px; align-items:center; }
+.stu-me__name{ font-weight:800; color:#6a4a35; }
+.stu-btn{
+  background: linear-gradient(135deg, var(--sun-500), var(--sun-400));
+  color:#fff; border:0; border-radius:10px; padding:8px 12px; cursor:pointer;
+}

@@ -1,0 +1,463 @@
+/* --- Theme tokens -------------------------------------------------------- */
+:root {
+  /* Sunset palette */
+  --bg: #1a0f16;            /* deep plum night */
+  --panel: #23131a;         /* card bg */
+  --soft-panel: #1b1016;    /* softer layer */
+  --border: #3d2027;        /* warm border */
+  --muted: #d8c7cf;         /* text-muted (warm gray/rose) */
+  --text: #ffeef2;          /* base text */
+  --heading: #fff6f2;       /* headings */
+  --primary: #ff7e5f;       /* coral/orange */
+  --primary-600: #ff6a4e;   /* a bit deeper */
+  --primary-700: #e85a3c;   /* even deeper */
+  --danger: #ff5e62;        /* sunset red */
+  --success: #53dfa9;       /* mint that pairs with warm tones */
+  --focus: 0 0 0 3px rgba(255, 126, 95, 0.35);
+
+  --radius: 12px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
+
+  --shadow-1: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 12px 30px rgba(0, 0, 0, 0.45);
+
+  --table-stripe: rgba(255, 255, 255, 0.03);
+}
+
+
+/* Respect system light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fff8f4;          /* pale peach sky */
+    --panel: #ffffff;
+    --soft-panel: #fff2ec;  /* peach wash */
+    --border: #ffd4c8;      /* warm border */
+    --muted: #6f5b5f;       /* warm gray */
+    --text: #2b191a;        /* text on light */
+    --heading: #1b0e10;
+    --primary: #ff7e5f;
+    --primary-600: #ff6a4e;
+    --primary-700: #e85a3c;
+    --danger: #ff5e62;
+    --success: #22b983;
+    --shadow-1: 0 10px 24px rgba(180, 80, 60, 0.18);
+    --shadow-2: 0 18px 40px rgba(180, 80, 60, 0.22);
+    --table-stripe: rgba(0, 0, 0, 0.03);
+  }
+}
+
+
+/* --- Container ----------------------------------------------------------- */
+.elective-container {
+  background:
+    radial-gradient(1000px 1000px at -10% -10%, rgba(255, 126, 95, 0.16), transparent 50%),
+    radial-gradient(900px 900px   at 110% 10%,  rgba(249, 196, 107, 0.12), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  padding: clamp(16px, 3vw, 28px);
+  min-height: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.title {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--heading);
+  margin: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtitle {
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 700;
+  color: var(--heading);
+  margin: 4px 0 10px;
+}
+
+/* small meta line */
+.tiny-line {
+  background: linear-gradient(180deg, var(--soft-panel), transparent);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* --- Cards / Sections ---------------------------------------------------- */
+.step-section,
+.user-details-form {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05)),
+              var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: clamp(12px, 2vw, 18px);
+}
+
+.card {
+  background: var(--soft-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+
+/* --- Form fields --------------------------------------------------------- */
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.field > input {
+  width: 100%;
+  background: var(--soft-panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .06s ease;
+}
+
+.field > input::placeholder { color: color-mix(in oklab, var(--muted), transparent 40%); }
+
+.field > input:focus {
+  border-color: var(--primary);
+  box-shadow: var(--focus);
+  transform: translateY(-1px);
+}
+
+/* --- Grid helpers -------------------------------------------------------- */
+.user-details-form .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .user-details-form .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .user-details-form .grid > .field:nth-child(1),
+  .user-details-form .grid > .field:nth-child(2),
+  .user-details-form .grid > .field:nth-child(5),
+  .user-details-form .grid > .field:nth-child(6),
+  .user-details-form .grid > .field:nth-child(7) {
+    grid-column: 1 / -1; /* span full on larger screens for nicer flow */
+  }
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.next-btn,
+.back-btn {
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: transform .08s ease, box-shadow .2s ease, background .15s ease, border-color .15s ease;
+}
+
+.next-btn {
+  background: linear-gradient(180deg, var(--primary), var(--primary-700));
+  color: white;
+  box-shadow: 0 8px 18px rgba(91,124,255,0.35);
+}
+
+.next-btn:hover { transform: translateY(-1px); }
+.next-btn:active { transform: translateY(0); }
+.next-btn:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+.back-btn {
+  background: transparent;
+  color: var(--primary);
+  border-color: color-mix(in oklab, var(--primary), transparent 60%);
+  backdrop-filter: blur(2px);
+}
+
+.back-btn:hover {
+  background: color-mix(in oklab, var(--primary), transparent 90%);
+  border-color: var(--primary-600);
+  color: var(--primary-600);
+}
+
+/* --- Error banner (you already render inline; class for generic errors) --- */
+.error-message {
+  margin-top: 10px;
+  background: color-mix(in oklab, var(--danger), transparent 85%);
+  color: color-mix(in oklab, var(--danger), white 20%);
+  border: 1px solid color-mix(in oklab, var(--danger), transparent 60%);
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* --- Table (preferences) ------------------------------------------------- */
+.elective-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+
+.elective-table thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, var(--soft-panel), var(--panel));
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.7px;
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+}
+
+.elective-table tbody td,
+.elective-table tbody th {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.elective-table tbody tr:nth-child(odd) {
+  background: var(--table-stripe);
+}
+
+.elective-table tbody tr:hover {
+  background: color-mix(in oklab, var(--primary), transparent 92%);
+  transition: background .15s ease;
+}
+
+.elective-table input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  outline: none;
+  border-radius: 50%;
+  border: 2px solid color-mix(in oklab, var(--primary), transparent 50%);
+  background: transparent;
+  display: grid;
+  place-content: center;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .06s ease;
+}
+
+.elective-table input[type="radio"]::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform .12s ease;
+  background: var(--primary);
+}
+
+.elective-table input[type="radio"]:checked {
+  border-color: var(--primary);
+  box-shadow: var(--focus);
+}
+
+.elective-table input[type="radio"]:checked::after {
+  transform: scale(1);
+}
+
+.elective-table input[type="radio"]:focus-visible {
+  box-shadow: var(--focus);
+}
+
+/* --- Allocation card list items ----------------------------------------- */
+.card > div {
+  padding: 8px 10px;
+  border-bottom: 1px dashed var(--border);
+}
+.card > div:last-child { border-bottom: 0; }
+
+/* --- Misc ---------------------------------------------------------------- */
+p { color: var(--muted); }
+
+/* Smooth-ish appearance */
+@media (prefers-reduced-motion: no-preference) {
+  .step-section, .user-details-form, .card, .elective-table {
+    animation: fadeSlideIn .28s ease both;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- Print styles (for the slip) ---------------------------------------- */
+@media print {
+  body {
+    background: white !important;
+  }
+  .elective-container {
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+  .btn-group,
+  .back-btn,
+  .next-btn,
+  .tiny-line,
+  .elective-table,
+  .user-details-form,
+  .subtitle:has(+ .elective-table),
+  .error-message {
+    display: none !important;
+  }
+  .card {
+    border: 1px solid #999 !important;
+    box-shadow: none !important;
+    color: black !important;
+  }
+  .title {
+    color: black !important;
+    margin-bottom: 10px;
+  }
+}
+
+/* --- Accessibility helpers ---------------------------------------------- */
+.next-btn:focus-visible,
+.back-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+@media (max-width: 540px) {
+  .title { font-size: 20px; }
+  .subtitle { font-size: 15px; }
+  .elective-table thead th,
+  .elective-table tbody td { padding: 10px; }
+}
+
+/* Optional: utility to make sections look separated nicely */
+.step-section { margin-top: 14px; }
+/* Topbar + logout */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:10px 12px;margin-bottom:8px;
+  background:var(--panel, #121833);
+  border:1px solid var(--border, #243055);
+  border-radius:20px;box-shadow:0 6px 20px rgba(0,0,0,.35);
+}
+.user-block{display:flex;align-items:center;gap:10px;min-width:0}
+.avatar{
+  width:36px;height:36px;border-radius:999px;
+  background:linear-gradient(180deg,var(--primary,#5b7cff),#415bd3);
+  color:#fff;font-weight:800;display:grid;place-items:center;letter-spacing:.5px;
+}
+.user-meta{display:grid;line-height:1.15;min-width:0}
+.user-name{color:var(--heading,#f5f7ff);font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-sub{color:var(--muted,#aab3cf);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logout-btn{
+  appearance:none;cursor:pointer;border-radius:999px;border:1px solid #88a0ff44;
+  background:transparent;color:var(--primary,#5b7cff);font-weight:800;padding:8px 14px;
+  transition:transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .2s ease;
+}
+.logout-btn:hover{background:#5b7cff15;border-color:#4f6cf0;color:#4f6cf0;transform:translateY(-1px)}
+@media print{.topbar,.logout-btn{display:none!important}}
+/* ===== High-contrast overrides for readability ===== */
+
+/* Titles & subtitles always strong */
+.title,
+.subtitle {
+  color: var(--heading) !important;
+}
+
+/* Step container text defaults */
+.step-section {
+  color: var(--text) !important;
+}
+
+/* Preference REVIEW table (PreferenceListView) */
+.preference-list-container {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-1) !important;
+  color: var(--heading) !important;
+}
+
+.preference-list-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+
+/* Header cells: strong text */
+.preference-list-table th {
+  background: linear-gradient(180deg, var(--soft-panel), var(--panel));
+  color: var(--heading) !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.7px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Body cells: strong text + no opacity */
+.preference-list-table td {
+  color: var(--heading) !important;
+  opacity: 1 !important;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Zebra + hover */
+.preference-list-table tbody tr:nth-child(odd) {
+  background: var(--table-stripe);
+}
+.preference-list-table tbody tr:hover {
+  background: color-mix(in oklab, var(--primary), transparent 90%);
+}
+
+/* Preference PICK table (Step 1) — make header/body stronger too */
+.elective-table thead th {
+  color: var(--heading) !important;
+}
+.elective-table tbody td {
+  color: var(--heading) !important;
+}
+
+/* Don’t mute general <p> text too much inside step-section */
+.step-section p {
+  color: var(--text) !important;
+}
+
+/* Button shadow tint matches sunset theme */
+.next-btn {
+  box-shadow: 0 8px 18px rgba(255, 126, 95, 0.35) !important;
+}
+
+/* Topbar texts readable */
+.user-name { color: var(--heading) !important; }
+.user-sub  { color: color-mix(in oklab, var(--text), transparent 40%) !important; }
